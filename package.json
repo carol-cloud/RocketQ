@@ -1,0 +1,27 @@
+{
+  "name": "rocketq",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido para gerenciar perguntas anônimas de usuários direcionadas ao dono da sala. Aplicação oferecida pela Rocketseat na NLW trilha discover",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carol-cloud/RocketQ.git"
+  },
+  "keywords": [],
+  "author": "Ana Carolina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carol-cloud/RocketQ/issues"
+  },
+  "homepage": "https://github.com/carol-cloud/RocketQ#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
