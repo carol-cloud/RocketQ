@@ -44,18 +44,57 @@ const create = async (req, res) => {
             id,
             pass
         ) VALUES (
-            ${roomId},
-            ${password}
+            ${ roomId },
+            ${ password }
         )`);
 
         await db.close();
 
-        res.redirect(`/room/${roomId}`);
+        res.redirect(`/room/${ roomId }`);
     } catch (error) {
        console.log(error);
     }
 };
 
+const searchAllQuestions = async(roomId) => {
+    try {
+        const db = await Database()
+        const questions = await db.all(`SELECT * FROM questions WHERE room = ${roomId} and read = 0`);
+        const questionsRead = await db.all(`SELECT * FROM questions WHERE room = ${roomId} and read = 1`);
+        await db.close(); 
+        return { questions, questionsRead }
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+
+const enter = (req, res) =>{
+    const { roomId } = req.body
+    res.redirect(`/room/${ roomId }`)
+}
+
+const open = async(req,res) => {
+    const { room } = req.params;
+    const { questions, questionsRead } = await searchAllQuestions(room);
+    const isNoQuestion = verifyQuestions(questions, questionsRead);
+
+    res.render("room", { questions, questionsRead, isNoQuestion, roomId: room })
+};
+
+const verifyQuestions = (questions, questionsRead) => {
+    let isNoQuestions 
+    if (questions.length == 0) {
+        if (questionsRead.length == 0) {
+            isNoQuestions = false
+        }
+    }
+    return isNoQuestions
+}
+
 module.exports = {
-    create
+    create,
+    open,
+    enter
 }
