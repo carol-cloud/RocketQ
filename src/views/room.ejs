@@ -55,8 +55,8 @@
                 <section id="questions">
                     <h2 class="sr-only">Perguntas da comunidade</h2>
                     <div class="questions">
-                        <% if(isNoQuestions){%>
-                            <%- include('parts/noquestion') 
+                        <% if(isNoQuestion){ %>
+                            <%- include('parts/no-questions.ejs') %>
                         <% } %>   
                         <% questions.forEach(question => { %>
                             <div class="question-wrapper">

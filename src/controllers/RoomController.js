@@ -87,7 +87,7 @@ const verifyQuestions = (questions, questionsRead) => {
     let isNoQuestions 
     if (questions.length == 0) {
         if (questionsRead.length == 0) {
-            isNoQuestions = false
+            isNoQuestions = true
         }
     }
     return isNoQuestions
